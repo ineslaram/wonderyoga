@@ -3,7 +3,7 @@
     <Hero/>
     <h2 class="citymeetups_title">Nuestras ciudades<br>
     más populares</h2>
-    <Citymeetups/>
+    <Citymeetups />
     <h2 class="topmeetups_title">Clases con más<br>
     recomendaciones
     </h2>

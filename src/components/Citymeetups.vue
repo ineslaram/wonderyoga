@@ -1,10 +1,9 @@
 
-  <!--<template>
+  <template>
   <v-container grid-list-md>
-    <v-layout row>
-      <v-flex xs12 sm3 lg3>
+    <v-layout row wrap>
+      <v-flex  xs12 sm3 lg3 v-for="data in myJson" :key="data.id">
         <card-city-meetup
-          v-for="data in myJson"
           v-bind:key="data.city"
           :city="data.city"
           :background-image="data.backgroundImage"
@@ -12,7 +11,11 @@
           :description="data.description"
         />
       </v-flex>
-      <v-flex xs12 sm3 lg3>
+    </v-layout>
+  </v-container>
+</template>
+
+ <v-flex xs12 sm3 lg3>
         <card-city-meetup
           city="Barcelona"
           background-image="https://images.unsplash.com/photo-1529551739587-e242c564f727?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1190&q=80"
@@ -36,13 +39,10 @@
           title="Más de 50 clases cada semana"
           description="Las mejores clases de Yoga en Ibiza"
         />
-      </v-flex> 
-    </v-layout>
-  </v-container>
-</template>
--->
+      </v-flex>
+
     
-<template>
+<!--<template>
 <v-card>
           <v-img
             class="white--text"
@@ -71,60 +71,45 @@
             <v-btn flat color="primary">Explorar</v-btn>
           </v-card-actions>
         </v-card>
-        </template>
+        </template>-->
 
 <script>
-export default {
-props: {
-    city:{
-        type: String, 
-        required: true,
-        default: ''
-    },
-
-    backgroundImage:{
-        type: String,
-        default: ''
-
-    },
-
-    title:{
-        type: String,
-        default: ''
-    },
-
-    description:{
-        type: String,
-        default: ''
-    }
-}
-}
-</script>
-
-
- 
-
-
-<script>
-
 import CardCityMeetup from "@/components/CardCityMeetup";
-import json from '@/json/data.json'
-
+import json from "@/json/data.json";
 export default {
   name: "Citymeetup",
+  components: {
+    CardCityMeetup
+  },
   data() {
     return {
       myJson: json
-    }
-    components: {
-      CardCityMeetup
+    };
+  },
+  props: {
+    city: {
+      type: String,
+      required: true,
+      default: ""
+    },
+
+    backgroundImage: {
+      type: String,
+      default: ""
+    },
+
+    title: {
+      type: String,
+      default: ""
+    },
+
+    description: {
+      type: String,
+      default: ""
     }
   }
-}
-
-
+};
 </script>
-
 
 <style scoped>
 .home--card--city {
