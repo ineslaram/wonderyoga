@@ -1,5 +1,14 @@
 <template>
     <div>
-        <p class="explorar">Pagina Explorar</p>
+        <p>test</p>
     </div>
 </template>
+
+<script>
+    export default {
+        name:"Explorar"
+    }
+</script>
+
+
+
