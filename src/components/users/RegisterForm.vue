@@ -1,13 +1,13 @@
 <template>
-  <v-container class="register-container">
+  <v-container >
     <v-layout row >
-      <v-flex xs12 sm6 lg6>
+      <v-flex class="image-container" xs12 sm6 lg6>
         <img class="register-image" src="../../../src/assets/register_image.svg">
       </v-flex>
 
       <v-flex xs12 sm6 lg6>
         <v-card-text>
-          <v-container>
+          <v-container class="register-form">
             <h1 class="register-title primary--text mb-3">Bienvenido a WonderYoga</h1>
             <h2 class="mb-3">Crea una cuenta</h2>
             <form @submit.prevent="onSignUp">
@@ -50,8 +50,8 @@
               </v-layout>
 
               <v-layout row>
-                <v-flex xs12>
-                  <v-btn type="submit">Registrase</v-btn>
+                <v-flex xs12 mt-3>
+                  <v-btn block color="primary" type="submit">Registrase</v-btn>
                 </v-flex>
               </v-layout>
             </form>
@@ -107,13 +107,22 @@
   margin-top: 100px;
 }
 
+.image-container{
+ margin-top: 100px;
+}
+
 .register-image{
   width: 30rem;
+ 
 }
 
 .register-title{
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 2px;;
+}
+
+.register-form{
+   margin-top: 59px;
 }
 </style>
