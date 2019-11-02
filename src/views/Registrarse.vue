@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'Registrarse',
   data() {
     return {
       snackbar: false

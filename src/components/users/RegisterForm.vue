@@ -57,10 +57,7 @@
 </template>
 
 <script>
-import firebase from 'firebase';
-import { router } from '@/router'
-  export default {
-    name: 'RegisterForm',
+ export default {
     data () {
       return {
         email: '',
@@ -70,27 +67,31 @@ import { router } from '@/router'
     },
     computed: {
       comparePasswords () {
-        return this.password !== this.confirmPassword ? 'Las contraseñas no coinciden' : ''
+        return this.password !== this.confirmPassword ? 'Passwords do not match' : ''
       },
       user () {
         return this.$store.getters.user
-       }
+      },
+      error () {
+        return this.$store.getters.error
+      },
+      loading () {
+        return this.$store.getters.loading
+      }
     },
     watch: {
       user (value) {
-        if (value !== null && value !== undefined) 
-        this.$router.push('/')
+        if (value !== null && value !== undefined) {
+          this.$router.push('/')
+        }
       }
-    },   
-   
+    },
     methods: {
       onSignUp () {
         this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
-        this.$emit('registerSucess')
       }
     }
   }
- 
 </script>
 
 <style lang="scss" scoped>

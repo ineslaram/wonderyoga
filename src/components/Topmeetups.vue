@@ -34,7 +34,7 @@
 
 
 
- <v-flex xs12 sm3 lg3>
+ <v-flex >
         <v-card>
           <v-img
             class="white--text"
