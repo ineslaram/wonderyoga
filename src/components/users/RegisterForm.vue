@@ -8,7 +8,7 @@
       <v-flex xs12 sm6 lg6>
         <v-card-text>
           <v-container class="register-form">
-            <h1 class="register-title primary--text mb-3">Bienvenido a WonderYoga</h1>
+            <h1 class="register-title secondary--text mb-3">Bienvenido a WonderYoga</h1>
             <h2 class="mb-3">Crea una cuenta</h2>
             <form @submit.prevent="onSignUp">
               <v-layout row>
