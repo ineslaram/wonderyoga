@@ -116,6 +116,7 @@
 
 <script>
   export default {
+    name: 'Publicar',
     data () {
       const defaultForm = Object.freeze({
         first: '',

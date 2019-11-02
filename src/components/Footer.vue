@@ -40,7 +40,6 @@
 <script>
 export default {
   name: 'Footer',
-    el: '#app',
     data: () => ({
     links: [
       'Home',

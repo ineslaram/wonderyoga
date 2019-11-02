@@ -26,6 +26,7 @@ import Howworks from "@/components/Howworks.vue";
 import Testimonial from "@/components/Testimonial.vue"
 import Footer from "@/components/Footer.vue"
 export default {
+  name: 'Home',
   components: {
     Hero,
     Citymeetups,
