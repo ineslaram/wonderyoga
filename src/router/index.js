@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 const Home = () => import('@/views/Home')
-const Entrar = () => import('@/views/Entrar')
+const Login = () => import('@/views/Login')
 const Explorar = () => import('@/views/Explorar')
 const Publicar = () => import('@/views/Publicar')
 const Registrarse = () => import('@/views/Registrarse')
@@ -35,8 +35,8 @@ export default new Router({
     },
     {
       path: '/entrar',
-      name: 'Entrar',
-      component: Entrar
+      name: 'Login',
+      component: Login
     }
   ]
 })
