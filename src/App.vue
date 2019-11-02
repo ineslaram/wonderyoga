@@ -1,15 +1,6 @@
 <template>
   <v-app>
     <nav>
-      <v-snackbar
-        v-model="snackbar"
-        :timeout="5000"
-        color="primary"
-        @registerSucess="snackbar=true" 
-      >
-        Te has registrado correctamente !
-        <v-btn flat color="white" @click="snackbar = false">Cerrar</v-btn>
-      </v-snackbar>
     <v-toolbar app class="white">
       <v-toolbar-title flat class="headline text-uppercase">
         <span class="font-weight-light primary--text">WonderYoga</span>
@@ -55,11 +46,10 @@ export default {
         { title: "Publicar" },
         { title: "Registrarse" },
         { title: "Entrar" }
-      ],
-      snackbar: false
-    };
+      ]
+    }
   }
-};
+}
 </script>
 
 <style>

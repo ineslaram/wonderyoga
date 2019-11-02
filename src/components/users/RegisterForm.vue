@@ -1,9 +1,15 @@
 <template>
-  <v-container>
-    <v-layout row>
-      <v-flex xs12 sm6 offset-sm3>
+  <v-container class="register-container">
+    <v-layout row >
+      <v-flex xs12 sm6 lg6>
+        <img class="register-image" src="../../../src/assets/register_image.svg">
+      </v-flex>
+
+      <v-flex xs12 sm6 lg6>
         <v-card-text>
           <v-container>
+            <h1 class="register-title primary--text mb-3">Bienvenido a WonderYoga</h1>
+            <h2 class="mb-3">Crea una cuenta</h2>
             <form @submit.prevent="onSignUp">
               <v-layout row>
                 <v-flex xs12>
@@ -58,6 +64,7 @@
 
 <script>
  export default {
+   name: 'RegisterForm',
     data () {
       return {
         email: '',
@@ -94,5 +101,19 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+
+.register-container{
+  margin-top: 100px;
+}
+
+.register-image{
+  width: 30rem;
+}
+
+.register-title{
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;;
+}
 </style>
