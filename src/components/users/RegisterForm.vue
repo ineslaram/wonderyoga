@@ -4,10 +4,12 @@
       <v-flex class="image-container" xs12 sm6 lg6>
         <img class="register-image" src="../../../src/assets/register_image.svg">
       </v-flex>
-
       <v-flex xs12 sm6 lg6>
         <v-card-text>
           <v-container class="register-form">
+            <div v-if="error">
+            <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+            </div>
             <h1 class="register-title secondary--text mb-3">Bienvenido a WonderYoga</h1>
             <h2 class="mb-3">Crea una cuenta</h2>
             <form @submit.prevent="onSignUp">
@@ -96,6 +98,11 @@
     methods: {
       onSignUp () {
         this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
+      },
+      onDismissed () {
+        this.$store.dispatch('clearError')
+
+        console.log('Dismissed alert !')
       }
     }
   }
