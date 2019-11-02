@@ -5,7 +5,7 @@ import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify, {
   theme: {
     primary: '#E55173',
-    secondary: '#424242',
+    secondary: '#58A4B0',
     accent: '#82B1FF',
     error: '#FF5252',
     info: '#2196F3',

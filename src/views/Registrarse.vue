@@ -1,21 +1,16 @@
 <template>
   <div>
-    <LoginForm @registerSucess="snackbar= true" />
+    <RegisterForm />
   </div>
 </template>
 
 <script>
 export default {
   name: 'Registrarse',
-  data() {
-    return {
-      snackbar: false
-    };
-  },
   components: {
-    LoginForm: () => import("@/components/users/RegisterForm")
+    RegisterForm: () => import("@/components/users/RegisterForm")
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
