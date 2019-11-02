@@ -3,7 +3,9 @@
     <nav>
     <v-toolbar app class="white">
       <v-toolbar-title flat class="headline text-uppercase">
+        <router-link to="/">
         <span class="font-weight-light primary--text">WonderYoga</span>
+        </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       
