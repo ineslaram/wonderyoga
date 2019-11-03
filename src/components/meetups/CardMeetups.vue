@@ -9,7 +9,7 @@
                 <v-img
                   class="meetups-image"
                   height="100%"
-                  src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1094&q=80"
+                  :src="meetup.imageUrl"
                 />
               </v-flex>
               <v-flex sm5 lg5>
@@ -34,7 +34,7 @@
                     <p>{{meetup.date}}</p>
                     <p>{{meetup.time}}</p>
                     <v-card-actions>
-                      <router-link to="/meetup/1">
+                      <router-link :to="'/meetup/' + meetup.id">
                         <v-btn @click="onLoadMeetup(meetup.id)" color="secondary">Ver más</v-btn>
                       </router-link>
                     </v-card-actions>
@@ -52,7 +52,7 @@
 <script>
 export default {
   name: "CardMeetups",
-  data() {
+  /*data() {
     return {
       meetups: [
         {
@@ -65,9 +65,25 @@ export default {
           time: '10:00h a 11:00h',
           date: '14/09/2018',
           price: '5€'
+        },   
+        {
+          id: 2,
+          title: 'Yoga en la Patacona',
+          imageUrl: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
+          address: 'Calle de la Malvarosa 88',
+          type: 'Vinyassa Flow',
+          teacher: 'Rachel Brathen',
+          time: '10:00h a 11:00h',
+          date: '14/09/2018',
+          price: '5€'
         }
       ]
     }
+  },*/
+  computed: {
+    meetups () {
+      return this.$store.getters.loadedMeetups
+    } 
   },
   methods: {
     onLoadMeetup(id) {
@@ -77,13 +93,14 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .cardmeetups-container {
   padding: 0;
 }
 
 .cardmeetup {
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 .card-price-container {
