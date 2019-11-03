@@ -5,7 +5,7 @@ const Login = () => import('@/views/Login')
 const Explorar = () => import('@/views/Explorar')
 const Publicar = () => import('@/views/Publicar')
 const Registrarse = () => import('@/views/Registrarse')
-
+const Meetup = () => import('@/views/meetups/Meetup')
 
 Vue.use(Router)
 
@@ -22,6 +22,11 @@ export default new Router({
       path: '/explorar',
       name: 'Explorar',
       component: Explorar
+    },
+    {
+      path: '/meetup/:id',
+      name: 'Meetup',
+      component: Meetup
     },
     {
       path: '/publicar',
