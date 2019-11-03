@@ -1,13 +1,16 @@
 <template>
-    <div>
-        <p>test</p>
-    </div>
+  <div>
+    <CardMeetups></CardMeetups>
+  </div>
 </template>
 
 <script>
-    export default {
-        name:'Explorar'
-    }
+export default {
+  name: "Explorar",
+  components: {
+    CardMeetups: () => import("@/components/meetups/CardMeetups")
+  }
+}
 </script>
 
 

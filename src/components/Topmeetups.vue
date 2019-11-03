@@ -41,11 +41,8 @@
             height="200px"
             src="https://images.unsplash.com/photo-1551656952-93e7973b7651?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
           >
-            <v-container fill-height class="home--card--city">
-              
-                  <v-card-title class="headline">Clase de Viyasa Yoga en Ruzzafa</v-card-title>
-                
-        
+            <v-container fill-height class="home--card--city">             
+                  <v-card-title class="headline">Clase de Viyasa Yoga en Ruzzafa</v-card-title>      
             </v-container>
           </v-img>
           <v-card-title>
