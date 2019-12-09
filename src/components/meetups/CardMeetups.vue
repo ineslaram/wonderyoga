@@ -22,7 +22,7 @@
                     </p>
                     <p>
                       Con
-                      <strong>{{meetup.teacher}}</strong>
+                      <strong>{{meetup.firstName}} {{meetup.lastName}}</strong>
                     </p>
                   </div>
                 </v-card-title>
@@ -30,8 +30,8 @@
               <v-flex class="card-price-container" sm3 lg3>
                 <v-card-title>
                   <div class="second-title-container">
-                    <h1 class="primary--text">{{meetup.price}}</h1>
-                    <p>{{meetup.date}}</p>
+                    <h1 class="primary--text">{{meetup.price}}€</h1>
+                    <p>{{meetup.date | date}}</p>
                     <p>{{meetup.time}}</p>
                     <v-card-actions>
                       <router-link :to="'/meetup/' + meetup.id">

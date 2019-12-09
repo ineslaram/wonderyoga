@@ -1,4 +1,4 @@
-
+import * as firebase from 'firebase'
 
 export default {
   state: {
@@ -11,7 +11,7 @@ export default {
         type: 'Vinyassa Flow',
         teacher: 'Rachel Brathen',
         time: '10:00h a 11:00h',
-        date: '15-09-2019',
+        date: new Date(),
         price: '5€'
       },   
       {
@@ -22,7 +22,7 @@ export default {
         type: 'Vinyassa Flow',
         teacher: 'Rachel Brathen',
         time: '10:00h a 11:00h',
-        date: '14-09-2019',
+        date: new Date(),
         price: '5€'
       }
     ]
@@ -30,9 +30,38 @@ export default {
   mutations: {
     createMeetup (state, payload) {
       state.loadedMeetups.push(payload)
+    },
+    setLoadedMeetups (state, payload) {
+      state.loadedMeetups = payload
     }
   },
   actions: {
+    loadMeetups ({commit}) {
+      firebase.database().ref('meetups').once('value')
+        .then((data) => {
+          const meetups = []
+          const obj = data.val()
+          for (let key in obj) {
+          meetups.push({
+            id: key,
+            title: obj[key].title,
+            description : obj[key].description,
+            imageUrl: obj[key].imageUrl,
+            address: obj[key].address,
+            type: obj[key].type,
+            teacher: obj[key].teacher,
+            date: obj[key].date,
+            price: obj[key].price
+          })  
+        } 
+        commit('setLoadedMeetups', meetups)  
+        })
+        .catch(
+          (error) => {
+            console.log(error)
+          }
+        )
+    },
     createMeetup ({commit}, payload) {
       const meetup = {
         firstName: payload.firstName,
@@ -42,11 +71,22 @@ export default {
         imageUrl: payload.imageUrl,
         address: payload.address,
         type: payload.type,
-        date: payload.date,
-        id: 'ojsdffuwefskjd588'
+        date: payload.date.toISOString(),
+        price: payload.price
       }
+      firebase.database().ref('meetups').push(meetup)
+      .then((data) => {
+        const key = data.key
+        console.log(data)
+        commit('createMeetup', {
+          ...meetup,
+          id: key
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
       //TODO: reach out to firebase and store it
-      commit('createMeetup', meetup)
     }
   }, 
    

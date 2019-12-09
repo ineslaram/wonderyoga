@@ -15,7 +15,7 @@
                 required
               ></v-text-field>
             </v-flex>
-           
+
             <v-flex xs12 sm6>
               <v-text-field
                 v-model="lastName"
@@ -65,6 +65,16 @@
                 required
               ></v-text-field>
             </v-flex>
+
+            <v-flex xs12 sm12>
+              <v-text-field
+                v-model="price"
+                value="10.00"
+                type="number"
+                label="Precio"
+                suffix="€"
+              ></v-text-field>
+            </v-flex>
           </v-layout>
 
           <v-layout row>
@@ -82,15 +92,11 @@
 
           <v-layout row wrap>
             <v-flex xs12>
-              <img 
-                :src="imageUrl"
-                height="100"
-                >
+              <img :src="imageUrl" height="100" />
             </v-flex>
           </v-layout>
 
-          <h1>Lugar y fecha de la clase</h1>
-          <p>Fecha</p>
+          <h1>Lugar de la clase</h1>
 
           <v-layout row>
             <v-flex xs12 sm12>
@@ -104,73 +110,160 @@
               ></v-text-field>
             </v-flex>
           </v-layout>
-          
-          <v-btn 
-              color="secondary" 
-              type="submit"
-              :disabled="!formIsValid" 
-              xs12 
-              sm3 
-              offset-sm3
-              >Publicar</v-btn>       
-        </v-container>  
+
+          <h1>Fecha de la clase</h1>
+
+          <v-layout>
+            <v-flex>
+              <v-menu
+                ref="menu1"
+                v-model="menu1"
+                :close-on-content-click="false"
+                transition="scale-transition"
+                offset-y
+                full-width
+                max-width="290px"
+                min-width="290px"
+              >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    v-model="date"
+                    label="Fecha"
+                    hint="MM/DD/YYYY formato"
+                    persistent-hint
+                    prepend-icon="event"
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                  v-model="date"
+                  no-title
+                  @input="menu1 = false"
+                ></v-date-picker>
+              </v-menu>
+            </v-flex>
+
+            <v-flex cols="11" sm="5">
+              <v-menu
+                ref="menu"
+                v-model="menu2"
+                :close-on-content-click="false"
+                :nudge-right="40"
+                :return-value.sync="time"
+                transition="scale-transition"
+                offset-y
+                max-width="290px"
+                min-width="290px"
+              >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    v-model="time"
+                    label="Hora"
+                    prepend-icon="access_time"
+                    readonly
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-time-picker
+                  v-if="menu2"
+                  v-model="time"
+                  full-width
+                  @click:minute="$refs.menu.save(time)"
+                ></v-time-picker>
+              </v-menu>
+            </v-flex>
+          </v-layout>
+
+          <v-btn
+            color="secondary"
+            type="submit"
+            :disabled="!formIsValid"
+            xs12
+            sm3
+            offset-sm3
+            >Publicar</v-btn
+          >
+        </v-container>
       </form>
     </v-card>
   </div>
 </template>
-
 
 <script>
 export default {
   name: "Publicar",
   data() {
     return {
-       firstName: '',
-       lastName: '',
-       title: '',
-       description: '',
-       imageUrl: '',
-       address: '',
-       type: ''
-    }
+      firstName: "",
+      lastName: "",
+      title: "",
+      description: "",
+      imageUrl: "",
+      address: "",
+      type: "",
+      price: "",
+      date: null,
+      menu: false,
+      modal: false,
+      menu1: false,
+      time: null,
+      menu2: false,
+      modal2: false
+    };
   },
 
   computed: {
     formIsValid() {
-      return this.firstName !== '' &&
-      this.lastName !== '' &&
-      this.title !== '' &&
-      this.description !== '' &&
-      this.imageUrl !== '' &&
-      this.address !== '' &&
-      this.type !== ''
-    }  
+      return (
+        this.firstName !== "" &&
+        this.lastName !== "" &&
+        this.title !== "" &&
+        this.description !== "" &&
+        this.imageUrl !== "" &&
+        this.address !== "" &&
+        this.type !== ""
+      );
+    },
+    formattedDate() {
+      const date = new Date(this.date);
+      if (typeof this.time === "string") {
+        const hours = this.time.match(/^(\d+)/)[1];
+        const minutes = this.time.match(/:(\d+)/)[1];
+        date.setHours(hours);
+        date.setMinutes(minutes);
+      } else {
+        date.setHours(this.time.getHours());
+        date.setMinutes(this.time.getMinutes());
+      }
+      console.log(date);
+      return date;
+    }
   },
 
   methods: {
-     onCreateMeetup() {
-       if(!this.formIsValid){
-         return
-       }
-       const meetupData = {
-         firstName: this.firstName,
-         lastName: this.lastName,
-         title: this.title,
-         description: this.description,
-         imageUrl: this.imageUrl,
-         address: this.address,
-         type: this.type,
-         date: new Date()
-       }
-       this.$store.dispatch('createMeetup', meetupData)
-       this.$router.push('explorar')
-       console.log(meetupData)
-     }
+    onCreateMeetup() {
+      if (!this.formIsValid) {
+        return;
+      }
+      const meetupData = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        title: this.title,
+        description: this.description,
+        imageUrl: this.imageUrl,
+        address: this.address,
+        type: this.type,
+        price: this.price,
+        date: this.formattedDate,
+
+      };
+      this.$store.dispatch("createMeetup", meetupData);
+      this.$router.push("explorar");
+      console.log(meetupData);
+    }
   }
-
-}
+};
 </script>
-
 
 <style scoped>
 * {
