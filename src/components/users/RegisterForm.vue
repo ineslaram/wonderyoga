@@ -125,11 +125,13 @@ export default {
 }
 
 .image-container {
-  margin-top: 100px;
+  margin-top: 110px;
+  width: 30rem;
 }
 
 .register-image {
-  width: 30rem;
+  width: 72%;
+  height: auto;
 }
 
 .register-title {

@@ -1,4 +1,5 @@
 import * as firebase from 'firebase'
+import { store } from '..'
 
 export default {
   state: {
@@ -37,6 +38,7 @@ export default {
   },
   actions: {
     loadMeetups ({commit}) {
+      commit('setLoading', true)
       firebase.database().ref('meetups').once('value')
         .then((data) => {
           const meetups = []
@@ -51,18 +53,21 @@ export default {
             type: obj[key].type,
             teacher: obj[key].teacher,
             date: obj[key].date,
-            price: obj[key].price
+            price: obj[key].price,
+            creatorId: obj[key].creatorId
           })  
         } 
-        commit('setLoadedMeetups', meetups)  
+        commit('setLoadedMeetups', meetups)
+        commit('setLoading', false)  
         })
         .catch(
           (error) => {
             console.log(error)
+            commit('setLoading', true)
           }
         )
     },
-    createMeetup ({commit}, payload) {
+    createMeetup ({commit, getters}, payload) {
       const meetup = {
         firstName: payload.firstName,
         lastName: payload.lastName,
@@ -72,7 +77,8 @@ export default {
         address: payload.address,
         type: payload.type,
         date: payload.date.toISOString(),
-        price: payload.price
+        price: payload.price,
+        creatorId: getters.user.id
       }
       firebase.database().ref('meetups').push(meetup)
       .then((data) => {

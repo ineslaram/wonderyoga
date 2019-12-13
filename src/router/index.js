@@ -6,6 +6,7 @@ const Explorar = () => import('@/views/Explorar')
 const Publicar = () => import('@/views/Publicar')
 const Registrarse = () => import('@/views/Registrarse')
 const Meetup = () => import('@/views/meetups/Meetup')
+import AuthGuard from './auth-guard'
 
 Vue.use(Router)
 
@@ -32,7 +33,9 @@ export default new Router({
     {
       path: '/publicar',
       name: 'Publicar',
-      component: Publicar
+      component: Publicar,
+      beforeEnter: AuthGuard
+
     },
     {
       path: '/registrarse',
@@ -43,6 +46,11 @@ export default new Router({
       path: '/entrar',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/perfil',
+      name: 'Perfil',
+      //beforeEnter: AuthGuard
     }
   ]
 })

@@ -7,8 +7,7 @@
         <span class="font-weight-light primary--text">WonderYoga</span>
         </router-link>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
-      
+      <v-spacer></v-spacer>    
       <router-link to="/explorar">
         <v-btn flat target="_blank">
           <span class="mr-2 primary--text">Explorar</span>
@@ -29,8 +28,17 @@
           <span class="mr-2 primary--text">Entrar</span>
         </v-btn>
       </router-link>
+      <router-link to="/perfil">
+        <v-btn flat target="_blank">
+          <span class="mr-2 primary--text">Perfil</span>
+        </v-btn>
+      </router-link>
+      <router-link v-if="isUserAuthenticated" to="/perfil">
+        <v-btn @click="onLogout" flat target="_blank">
+          <v-icon class="primary--text">exit_to_app</v-icon><span class="exit primary--text">Salir</span>
+        </v-btn>
+      </router-link>
     </v-toolbar>
-
     <v-content>
       <router-view />
     </v-content>
@@ -50,6 +58,16 @@ export default {
         { title: "Entrar" }
       ]
     }
+  },
+  methods: {
+    onLogout () {
+      this.$store.dispatch('logout')
+    }
+  },
+  computed: {
+    isUserAuthenticated () {
+      return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+    }
   }
 }
 </script>
@@ -65,6 +83,10 @@ export default {
 
 a {  
   text-decoration: none;
+}
+
+.exit{
+  margin-left: 5px;
 }
 </style>
 

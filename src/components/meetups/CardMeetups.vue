@@ -6,7 +6,26 @@
           <v-container class="cardmeetups-container">
             <v-layout row wrap>
               <v-flex xs12 sm4 lg4>
+                <div class="text-xs-center">
+                  <v-layout 
+                    row 
+                    wrap 
+                    justify-center 
+                     >
+                    <v-flex class="text-xs-center" xs12 sm4 lg4>
+                      <v-progress-circular
+                        class="text-xs-center loading test"
+                        v-if="loading"
+                        indeterminate
+                        color="primary"
+                        align-center
+                      ></v-progress-circular>
+                       </v-flex>
+                   </v-layout>    
+                </div>
                 <v-img
+                  
+                  v-if="!loading"
                   class="meetups-image"
                   height="100%"
                   :src="meetup.imageUrl"
@@ -83,7 +102,10 @@ export default {
   computed: {
     meetups () {
       return this.$store.getters.loadedMeetups
-    } 
+    },
+    loading () {
+      return this.$store.getters.loading
+    }
   },
   methods: {
     onLoadMeetup(id) {
@@ -109,5 +131,9 @@ export default {
 
 .second-title-container {
   margin: 0 auto;
+}
+
+.loading {
+  margin-top: 70px;
 }
 </style>
