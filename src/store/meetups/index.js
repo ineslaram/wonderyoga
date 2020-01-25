@@ -46,6 +46,8 @@ export default {
           for (let key in obj) {
           meetups.push({
             id: key,
+            firstName: obj[key].firstName,
+            lastName: obj[key].lastName,
             title: obj[key].title,
             description : obj[key].description,
             imageUrl: obj[key].imageUrl,
@@ -68,6 +70,7 @@ export default {
         )
     },
     createMeetup ({commit, getters}, payload) {
+      debugger
       const meetup = {
         firstName: payload.firstName,
         lastName: payload.lastName,
@@ -79,6 +82,7 @@ export default {
         price: payload.price,
         creatorId: getters.user.id
       }
+      debugger
       let imageUrl
       let key
       firebase.database().ref('meetups').push(meetup)
@@ -113,8 +117,6 @@ export default {
         .catch((error) => {
           console.log(error)
         })
-        // Reach out to firebase and store it
-      //TODO: reach out to firebase and store it
     }
   }, 
    

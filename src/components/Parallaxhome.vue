@@ -8,7 +8,7 @@
       column
       justify-center
     >
-    <img src="../../src/assets/Logo_wonderyoga.svg" alt="">
+    <img src="../../src/assets/Logo_wonderyoga.svg">
       <h4 class="display-4 font-weight-thin mb-3">WONDERYOGA</h4>
       <h1 class="display-2 font-weight-thin mb-3">La forma más flexible de hacer Yoga</h1>
       <v-btn light large round color="white primary--text" dark>Explorar</v-btn>

@@ -1,12 +1,15 @@
 <template>
   <div>
-    <p>test</p>
+    <MeetupDetail :id="id"/>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'Meetup'
+    name: 'Meetup',
+    components: {
+      MeetupDetail: () => import('@/components/meetups/MeetupDetail') 
+    }
   }
 </script>
 

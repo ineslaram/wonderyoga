@@ -5,7 +5,7 @@ const Login = () => import('@/views/Login')
 const Explorar = () => import('@/views/Explorar')
 const Publicar = () => import('@/views/Publicar')
 const Registrarse = () => import('@/views/Registrarse')
-const Meetup = () => import('@/views/meetups/Meetup')
+const Meetup = () => import('@/components/meetups/MeetupDetail')
 import AuthGuard from './auth-guard'
 
 Vue.use(Router)

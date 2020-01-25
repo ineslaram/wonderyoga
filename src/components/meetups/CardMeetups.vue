@@ -23,8 +23,7 @@
                        </v-flex>
                    </v-layout>    
                 </div>
-                <v-img
-                  
+                <v-img                  
                   v-if="!loading"
                   class="meetups-image"
                   height="100%"
