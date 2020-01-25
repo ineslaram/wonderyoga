@@ -73,25 +73,47 @@ export default {
         lastName: payload.lastName,
         title: payload.title,
         description: payload.description,
-        imageUrl: payload.imageUrl,
         address: payload.address,
         type: payload.type,
         date: payload.date.toISOString(),
         price: payload.price,
         creatorId: getters.user.id
       }
+      let imageUrl
+      let key
       firebase.database().ref('meetups').push(meetup)
-      .then((data) => {
-        const key = data.key
-        console.log(data)
-        commit('createMeetup', {
-          ...meetup,
-          id: key
+        .then((data) => {
+          key = data.key
+          return key
         })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+        .then(key => {
+          const filename = payload.image.name
+          const ext = filename.slice(filename.lastIndexOf('.'))
+          return firebase.storage().ref('meetups/' + key + '.' + ext).put(payload.image)
+        })
+        .then(snapshot => {
+          return new Promise((resolve, reject) => {
+            snapshot.ref.getDownloadURL().then(url => {
+              snapshot.downloadURL = url
+              resolve(snapshot)
+            })
+          })
+        })
+        .then((snapshot) => {
+          imageUrl = snapshot.downloadURL
+          return firebase.database().ref('meetups').child(key).update({imageUrl: imageUrl})
+        })
+        .then(() => {
+          commit('createMeetup', {
+            ...meetup,
+            imageUrl: imageUrl,
+            id: key
+          })
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+        // Reach out to firebase and store it
       //TODO: reach out to firebase and store it
     }
   }, 

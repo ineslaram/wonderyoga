@@ -79,14 +79,8 @@
 
           <v-layout row>
             <v-flex xs12 sm12>
-              <v-text-field
-                v-model="imageUrl"
-                id="imageUrl"
-                name="imageUrl"
-                color="primary"
-                label="Imagen*"
-                required
-              ></v-text-field>
+              <v-btn color="has-text--primary" @click="onPickFile">Subir foto</v-btn>
+                <input type="file" style="display: none" ref="fileInput" accept="image/*" @change="onFilePicked">
             </v-flex>
           </v-layout>
 
@@ -208,7 +202,8 @@ export default {
       menu1: false,
       time: null,
       menu2: false,
-      modal2: false
+      modal2: false,
+      image: null
     };
   },
 
@@ -245,24 +240,42 @@ export default {
       if (!this.formIsValid) {
         return;
       }
+      if(!this.image) {
+        return
+      }
       const meetupData = {
         firstName: this.firstName,
         lastName: this.lastName,
         title: this.title,
         description: this.description,
-        imageUrl: this.imageUrl,
+        image: this.image,
         address: this.address,
         type: this.type,
         price: this.price,
         date: this.formattedDate,
-
       };
       this.$store.dispatch("createMeetup", meetupData);
       this.$router.push("explorar");
       console.log(meetupData);
+    },
+    onPickFile() {
+      this.$refs.fileInput.click()
+    },
+    onFilePicked(event) {
+      const files = event.target.files
+      let filename = files[0].name
+      if(filename.lastIndexOf('.') <= 0) {
+        return ('Por favor, introduce una imagen valida.')
+      }
+      const fileReader = new FileReader()
+      fileReader.addEventListener('load', () => {
+        this.imageUrl = fileReader.result
+      })
+      fileReader.readAsDataURL(files[0])
+      this.image = files[0]
     }
-  }
-};
+  }    
+}
 </script>
 
 <style scoped>
