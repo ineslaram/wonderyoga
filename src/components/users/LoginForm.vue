@@ -8,9 +8,14 @@
         <v-card-text>
           <v-container class="login-form">
             <div v-if="error">
-              <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+              <app-alert
+                @dismissed="onDismissed"
+                :text="error.message"
+              ></app-alert>
             </div>
-            <h1 class="login-title secondary--text mb-3">Bienvenido a WonderYoga</h1>
+            <h1 class="login-title secondary--text mb-3">
+              Bienvenido a WonderYoga
+            </h1>
             <h2 class="mb-3">Entrar</h2>
             <form @submit.prevent="onSignIn">
               <v-layout row>
@@ -40,13 +45,14 @@
 
               <v-layout row>
                 <v-flex xs12 mt-3>
-                  <v-btn 
-                    block 
-                    color="primary" 
+                  <v-btn
+                    block
+                    color="primary"
                     type="submit"
                     :loading="loading"
                     :disabled="loading"
-                    >Entrar</v-btn>
+                    >Entrar</v-btn
+                  >
                 </v-flex>
               </v-layout>
             </form>
@@ -64,46 +70,46 @@ export default {
     return {
       email: "",
       password: "",
-      confirmPassword: ""
-    };
+      confirmPassword: "",
+    }
   },
   computed: {
     comparePasswords() {
       return this.password !== this.confirmPassword
         ? "Passwords do not match"
-        : "";
+        : ""
     },
     user() {
-      return this.$store.getters.user;
+      return this.$store.getters.user
     },
     error() {
-      return this.$store.getters.error;
+      return this.$store.getters.error
     },
     loading() {
-      return this.$store.getters.loading;
-    }
+      return this.$store.getters.loading
+    },
   },
   watch: {
     user(value) {
       if (value !== null && value !== undefined) {
-        this.$router.push("/");
+        this.$router.push("/")
       }
-    }
+    },
   },
   methods: {
     onSignIn() {
       this.$store.dispatch("signUserIn", {
         email: this.email,
-        password: this.password
-      });
+        password: this.password,
+      })
     },
     onDismissed() {
-      this.$store.dispatch("clearError");
+      this.$store.dispatch("clearError")
 
-      console.log("Dismissed alert !");
-    }
-  }
-};
+      console.log("Dismissed alert !")
+    },
+  },
+}
 </script>
 
 <style scoped>

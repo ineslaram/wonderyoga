@@ -8,8 +8,8 @@
             height="200px"
             :src="backgroundImage"
           >
-            <v-container fill-height class="home--card--city">           
-                  <v-card-title class="headline"> {{title}}</v-card-title>    
+            <v-container fill-height class="home--card--city">
+                <v-card-title class="headline"> {{title}}</v-card-title>
             </v-container>
           </v-img>
           <v-card-title>
@@ -34,9 +34,9 @@
 export default {
 props: {
     backgroundImage:{
-        type: String, 
+        type: String,
         required: true,
-        default: '' 
+        default: ''
     },
 
    title:{
@@ -57,7 +57,3 @@ props: {
 }
 }
 </script>
-
-<style>
-
-</style>

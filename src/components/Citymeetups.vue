@@ -1,8 +1,7 @@
-
-  <template>
+<template>
   <v-container grid-list-md>
     <v-layout row wrap>
-      <v-flex  xs12 sm3 lg3 v-for="data in myJson" :key="data.id">
+      <v-flex xs12 sm3 lg3 v-for="data in myJson" :key="data.id">
         <card-city-meetup
           v-bind:key="data.city"
           :city="data.city"
@@ -15,100 +14,43 @@
   </v-container>
 </template>
 
- <v-flex xs12 sm3 lg3>
-        <card-city-meetup
-          city="Barcelona"
-          background-image="https://images.unsplash.com/photo-1529551739587-e242c564f727?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1190&q=80"
-          title="Más de 50 clases cada semana"
-          description="Prueba nuestras clases en Barcelona"
-        />
-      </v-flex>
-      <v-flex xs12 sm3 lg3>
-        <card-city-meetup
-          city="Sevilla"
-          background-image="https://images.unsplash.com/photo-1495562569060-2eec283d3391?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-          title="Más de 50 clases cada semana"
-          description="Las mejores clases de Yoga en Sevilla"
-        />
-      </v-flex>
-
-      <v-flex xs12 sm3 lg3>
-        <card-city-meetup
-          city="Ibiza"
-          background-image="https://images.unsplash.com/photo-1534795391805-5d3f2a606031?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80"
-          title="Más de 50 clases cada semana"
-          description="Las mejores clases de Yoga en Ibiza"
-        />
-      </v-flex>
-
-    
-<!--<template>
-<v-card>
-          <v-img
-            class="white--text"
-            height="200px"
-            :src="backgroundImage"
-          >
-            <v-container fill-height class="home--card--city">
-              <v-layout fill-height>
-                <v-flex xs3 align-end flexbox>
-                  <span class="headline">{{city}}</span>
-                </v-flex>
-              </v-layout>
-            </v-container>
-          </v-img>
-          <v-card-title>
-            <div>
-              <span class="grey--text"></span>
-              <br>
-              <span class="primary--text">{{title}}</span>
-              <br>
-              <span>{{description}}</span>
-            </div>
-          </v-card-title>
-          <v-card-actions>
-            <v-btn flat color="primary">Compartir</v-btn>
-            <v-btn flat color="primary">Explorar</v-btn>
-          </v-card-actions>
-        </v-card>
-        </template>-->
 
 <script>
-import CardCityMeetup from "@/components/CardCityMeetup";
-import json from "@/json/data.json";
+import CardCityMeetup from "@/components/CardCityMeetup"
+import json from "@/json/data.json"
 export default {
   name: "Citymeetup",
   components: {
-    CardCityMeetup
+    CardCityMeetup,
   },
   data() {
     return {
-      myJson: json
-    };
+      myJson: json,
+    }
   },
   props: {
     city: {
       type: String,
       required: true,
-      default: ""
+      default: "",
     },
 
     backgroundImage: {
       type: String,
-      default: ""
+      default: "",
     },
 
     title: {
       type: String,
-      default: ""
+      default: "",
     },
 
     description: {
       type: String,
-      default: ""
-    }
-  }
-};
+      default: "",
+    },
+  },
+}
 </script>
 
 <style scoped>
@@ -116,4 +58,3 @@ export default {
   max-width: 277px;
 }
 </style>
-

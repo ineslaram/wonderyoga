@@ -1,37 +1,27 @@
 <template>
   <v-container class="home-hero fluid">
     <v-flex class="home--content">
-      <h2 class="white--text">
-        Encuentra una clase de Yoga donde quieras,
-        <br>cuando quieras.
+      <h2 class="home--title">
+        Encuentra una clase de Yoga <br />
+        donde quieras,cuando quieras.
       </h2>
 
-      <v-flex xs12>
-        <v-text-field
-          class="home--search--input"
-          style="border-radius:50px"
-          label="Valencia"
-          solo
-          append-icon="search"
-        >
-          <v-icon>search</v-icon>
-        </v-text-field>
-      </v-flex>
+      <v-layout row>
+        <v-flex xs12 mt-3>
+          <v-btn block color="white" type="submit" class="home--btn"
+            >Explorar</v-btn
+          >
+        </v-flex>
+      </v-layout>
     </v-flex>
   </v-container>
 </template>
 
-
-
-
 <script>
-
-
 export default {
-    name:"Hero"
+  name: "Hero",
 }
 </script>
-
 
 <style <style scoped>
 .template {
@@ -47,18 +37,37 @@ export default {
 .home--content {
   display: flex;
   flex-direction: column;
-  padding: 200px;
+  padding: 150px;
+}
+
+.home--title {
+  color: white;
+  font-size: 35px;
 }
 
 .home--search-wrapper {
   position: relative;
 }
 
-.home--search--input {
-  width: 79%;
+.home--btn {
+  width: 200px;
   max-width: 414px;
   margin-top: 15px;
+  color: #e55173;
+}
+
+@media (max-width: 888px) {
+  .home--content {
+    padding: 200px 0px 100px 10%;
+  }
+  .home--title {
+    color: white;
+    font-size: 30px;
+  }
+}
+@media (max-width: 470px) {
+  .home--content {
+    padding-top: 100px;
+  }
 }
 </style>
-
-

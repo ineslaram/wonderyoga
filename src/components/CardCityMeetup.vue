@@ -4,7 +4,7 @@
       <v-container fill-height class="home--card--city">
         <v-layout fill-height>
           <v-flex xs3 align-end flexbox>
-            <span class="headline">{{city}}</span>
+            <span class="headline">{{ city }}</span>
           </v-flex>
         </v-layout>
       </v-container>
@@ -14,15 +14,14 @@
         <span class="grey--text"></span>
         <br />
         <v-responsive>
-          <span class="primary--text">{{title}}</span>
+          <span class="primary--text">{{ title }}</span>
         </v-responsive>
         <br />
         <v-responsive>
-          <span>{{description}}</span>
+          <span>{{ description }}</span>
         </v-responsive>
       </div>
     </v-card-title>
-
     <v-card-actions>
       <v-btn flat color="primary">
         <v-responsive>Explorar</v-responsive>
@@ -37,26 +36,23 @@ export default {
     city: {
       type: String,
       required: true,
-      default: ""
+      default: "",
     },
 
     backgroundImage: {
       type: String,
-      default: ""
+      default: "",
     },
 
     title: {
       type: String,
-      default: ""
+      default: "",
     },
 
     description: {
       type: String,
-      default: ""
-    }
-  }
-};
+      default: "",
+    },
+  },
+}
 </script>
-
-<style>
-</style>

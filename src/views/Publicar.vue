@@ -256,7 +256,6 @@ export default {
       };
       this.$store.dispatch("createMeetup", meetupData);
       this.$router.push("explorar");
-      console.log(meetupData);
     },
     onPickFile() {
       this.$refs.fileInput.click()

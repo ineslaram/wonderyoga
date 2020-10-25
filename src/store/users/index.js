@@ -1,4 +1,5 @@
 import * as firebase from 'firebase'
+import { store } from '..'
 
 export default {
   state: {
@@ -6,6 +7,7 @@ export default {
   },
   mutations: {
     setUser (state, payload) {
+      debugger
       state.user = payload
     }
   },
@@ -17,11 +19,11 @@ export default {
         .then(
           user => {
             commit('setLoading', false)
+            debugger
             const newUser = {
               id: user.uid,
-              name: user.displayName,
-              email: user.email,
-              photoUrl: user.photoURL
+              registeredMeetups: [],
+              fbKeys: {}
             }
             commit('setUser', newUser)
           }
@@ -43,9 +45,8 @@ export default {
             commit('setLoading', false)
             const newUser = {
               id: user.uid,
-              name: user.displayName,
-              email: user.email,
-              photoUrl: user.photoURL
+              registeredMeetups: [],
+              fbKeys: {}
             }
             commit('setUser', newUser)
           }
@@ -157,9 +158,8 @@ export default {
     autoSignIn ({commit}, payload) {
       commit('setUser', {
         id: payload.uid,
-        name: payload.displayName,
-        email: payload.email,
-        photoUrl: payload.photoURL
+        registeredMeetups: [],
+        fbKeys: {}
       })
     },
     resetPasswordWithEmail ({ commit }, payload) {
