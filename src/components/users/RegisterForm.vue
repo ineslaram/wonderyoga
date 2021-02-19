@@ -45,14 +45,13 @@
                   ></v-text-field>
                 </v-flex>
               </v-layout>
-
               <v-layout row>
                 <v-flex xs12>
                   <v-text-field
                     name="confirmPassword"
                     label="Confirm Password"
                     id="confirmPassword"
-                    type="confirmPassword"
+                    type="password"
                     v-model="confirmPassword"
                     :rules="[comparePasswords]"
                   ></v-text-field>
@@ -121,8 +120,6 @@ export default {
     },
     onDismissed() {
       this.$store.dispatch("clearError")
-
-      console.log("Dismissed alert !")
     },
   },
 }

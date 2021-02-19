@@ -79,7 +79,6 @@ export default {
   name: "CardMeetups",
   computed: {
     meetups() {
-      debugger
       return this.$store.getters.loadedMeetups
     },
     loading() {
@@ -93,8 +92,8 @@ export default {
     onLoadMeetup(id) {
       this.$router.push("/meetups/" + id)
     },
-    loadData() {
-      this.$store.actions.loadMeetups
+    async loadData() {
+      await this.$store.dispatch("loadMeetups")
     },
   },
 }

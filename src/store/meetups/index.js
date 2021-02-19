@@ -5,29 +5,7 @@ import {
 
 export default {
   state: {
-    loadedMeetups: [{
-        id: 1,
-        title: 'Yoga en La Malvarosa',
-        imageUrl: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1094&q=80',
-        address: 'Calle de la Malvarosa 88',
-        type: 'Vinyassa Flow',
-        teacher: 'Rachel Brathen',
-        time: '10:00h a 11:00h',
-        date: new Date(),
-        price: '5€'
-      },
-      {
-        id: 2,
-        title: 'Yoga en la Patacona',
-        imageUrl: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
-        address: 'Calle de la Malvarosa 88',
-        type: 'Vinyassa Flow',
-        teacher: 'Rachel Brathen',
-        time: '10:00h a 11:00h',
-        date: new Date(),
-        price: '5€'
-      }
-    ]
+    loadedMeetups: []
   },
   mutations: {
     registerUserForMeetup(state, payload) {
@@ -106,9 +84,7 @@ export default {
           commit('setLoading', false)
         })
     },
-    loadMeetups({
-      commit
-    }) {
+    loadMeetups({ commit }) {
       commit('setLoading', true)
       firebase.database().ref('meetups').once('value')
         .then((data) => {
@@ -206,7 +182,6 @@ export default {
       if (payload.date) {
         updateObj.date = payload.date
       }
-      debugger
       firebase.database().ref('meetups').child(payload.id).update(updateObj)
         .then(() => {
           commit('setLoading', false)

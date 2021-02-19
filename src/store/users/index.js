@@ -7,7 +7,6 @@ export default {
   },
   mutations: {
     setUser (state, payload) {
-      debugger
       state.user = payload
     }
   },
@@ -19,7 +18,6 @@ export default {
         .then(
           user => {
             commit('setLoading', false)
-            debugger
             const newUser = {
               id: user.uid,
               registeredMeetups: [],

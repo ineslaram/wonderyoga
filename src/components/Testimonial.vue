@@ -21,9 +21,9 @@
     <v-flex class="testimonial_content">
       <q class="font-weight-light mb-3">
         Por motivos laborales no tengo
-        <br />mucho tiempo y viajo mucho. Por eso, <br />No puedo apuntarme a
-        una escuela de <br />Yoga y gracias a WonderYoga puedo reservar
-        <br />una clase de Yoga cuando quiera, <br />sin tener que pagar altas
+        <br />mucho tiempo y viajo mucho. Por eso, <br />no puedo apuntarme a
+        una escuela de <br />yoga y gracias a WonderYoga puedo reservar
+        <br />una clase de cuando quiera, sin tener<br /> que pagar
         cuotas mensuales
       </q>
     </v-flex>

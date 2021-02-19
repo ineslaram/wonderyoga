@@ -1,5 +1,5 @@
 <template>
-  <v-dialog persistent v-model="registerDialog">
+  <v-dialog persistent v-model="registerDialog" class="dialog-container">
     <v-btn primary accent slot="activator">
       {{ userIsRegistered ? "Unregister" : "Register" }}
     </v-btn>
@@ -8,16 +8,16 @@
         <v-layout row wrap>
           <v-flex xs12>
             <v-card-title v-if="userIsRegistered"
-              >Unregister from Meetup?</v-card-title
+              >¿Desapuntarse de esta clase?</v-card-title
             >
-            <v-card-title v-else>Register for Meetup?</v-card-title>
+            <v-card-title v-else>¿Apuntarse a esta clase?</v-card-title>
           </v-flex>
         </v-layout>
         <v-divider></v-divider>
         <v-layout row wrap>
           <v-flex xs12>
             <v-card-text
-              >You can always change your decision later on.</v-card-text
+              >Siempre puedes cambiar esta acción más adelante.</v-card-text
             >
           </v-flex>
         </v-layout>
@@ -28,10 +28,10 @@
                 class="red--text darken-1"
                 flat
                 @click="registerDialog = false"
-                >Cancel</v-btn
+                >Cancelar</v-btn
               >
               <v-btn class="green--text darken-1" flat @click="onAgree"
-                >Confirm</v-btn
+                >Confirmar</v-btn
               >
             </v-card-actions>
           </v-flex>
@@ -52,7 +52,6 @@ export default {
 
   computed: {
     userIsRegistered() {
-      debugger
       return (
         this.$store.getters.user.registeredMeetups.findIndex((meetupId) => {
           return meetupId === this.meetupId
@@ -72,3 +71,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.v-dialog {
+ max-width: 800px;
+}
+</style>
